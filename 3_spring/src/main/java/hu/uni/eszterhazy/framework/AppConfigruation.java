@@ -3,12 +3,10 @@ package hu.uni.eszterhazy.framework;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import service.QuadracitSolver;
-import service.QuadraticSolverImpl;
+import hu.uni.eszterhazy.framework.service.QuadracitSolver;
+import hu.uni.eszterhazy.framework.service.QuadraticSolverImpl;
 
 @SpringBootConfiguration
-@ComponentScan(basePackages ={"hu.uni.eszterhazy.framework"} )
 public class AppConfigruation {
 
     @Bean
@@ -16,8 +14,4 @@ public class AppConfigruation {
         return "Zsolt";
     }
 
-    @Bean
-    public QuadracitSolver quadracitSolver(){
-        return new QuadraticSolverImpl();
-    }
 }

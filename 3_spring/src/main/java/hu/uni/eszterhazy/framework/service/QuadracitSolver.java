@@ -1,4 +1,4 @@
-package service;
+package hu.uni.eszterhazy.framework.service;
 
 import hu.uni.eszterhazy.framework.model.EquationSolution;
 import hu.uni.eszterhazy.framework.model.QuadraticEquation;
