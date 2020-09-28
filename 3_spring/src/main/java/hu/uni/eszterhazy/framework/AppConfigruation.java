@@ -1,12 +1,14 @@
 package hu.uni.eszterhazy.framework;
 
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import service.QuadracitSolver;
 import service.QuadraticSolverImpl;
 
-@Configuration
+@SpringBootConfiguration
+@ComponentScan(basePackages ={"hu.uni.eszterhazy.framework"} )
 public class AppConfigruation {
 
     @Bean

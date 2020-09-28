@@ -12,6 +12,13 @@ import org.springframework.context.annotation.Configuration;
 import service.QuadracitSolver;
 import service.QuadraticSolverImpl;
 
+
+/**
+ * Task:    Create a calculator for the 4 basic operations similar to the QuadraticSolver.
+ *          Separate the interface from its implementation.
+ *          Test it manually in the App.run method.
+ *
+ */
 @SpringBootApplication
 @Configuration
 public class App implements CommandLineRunner
