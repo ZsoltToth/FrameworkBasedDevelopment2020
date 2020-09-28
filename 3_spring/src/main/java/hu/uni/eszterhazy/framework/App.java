@@ -2,6 +2,7 @@ package hu.uni.eszterhazy.framework;
 
 import hu.uni.eszterhazy.framework.model.EquationSolution;
 import hu.uni.eszterhazy.framework.model.QuadraticEquation;
+import hu.uni.eszterhazy.framework.service.QuadracitSolver;
 import hu.uni.eszterhazy.framework.service.QuadraticSolverImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -31,7 +32,7 @@ public class App implements CommandLineRunner
     public void run(String... args) throws Exception {
         System.out.printf("Hello %s!%n", applicationContext.getBean("name").toString());
         QuadraticEquation equation = new QuadraticEquation(4,-6,1);
-        EquationSolution solution = applicationContext.getBean(QuadraticSolverImpl.class).solve(equation);
+        EquationSolution solution = applicationContext.getBean(QuadracitSolver.class).solve(equation);
         for(double root : solution.getRoots()){
             System.out.println(root);
         }
