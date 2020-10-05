@@ -31,7 +31,7 @@ public class App implements CommandLineRunner
     @Override
     public void run(String... args) throws Exception {
         System.out.printf("Hello %s!%n", applicationContext.getBean("name").toString());
-        QuadraticEquation equation = new QuadraticEquation(4,-6,1);
+        QuadraticEquation equation = new QuadraticEquation(-400,4,-1);
         EquationSolution solution = applicationContext.getBean(QuadracitSolver.class).solve(equation);
         for(double root : solution.getRoots()){
             System.out.println(root);
