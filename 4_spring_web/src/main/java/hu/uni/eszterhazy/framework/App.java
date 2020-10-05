@@ -5,7 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
- * Hello world!
+ * Extend the application with a Calculator which provides services for the 3 basic operation (plus, minus, multiplication).
+ * Division is not required because it may throw Exception.
+ * Use only get Requests.
  *
  */
 @SpringBootApplication
