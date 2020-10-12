@@ -1,7 +1,12 @@
 package hu.uni.eszterhazy.framework;
 
 /**
- * Hello world!
+ * Task
+ *  - Add a new Exception for unknown Users at AccessControlManagerServiceImpl. (Not Found)
+ *  - Convert the requestAccess method (AccessControlMangerServiceImpl L33-L53) to use Stream API. (stream().reduce(), etc.)
+ *
+ * See:
+ *  - {@link hu.uni.eszterhazy.framework.service.AccessControlManagerServiceImpl}
  *
  */
 
