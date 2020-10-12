@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 @Service
 public class AccessControlManagerServiceImpl implements AccessControlManagerService{
@@ -31,13 +32,11 @@ public class AccessControlManagerServiceImpl implements AccessControlManagerServ
 
     @Override
     public void requestAccess(String user, int gate) throws AccessDeniedException {
-        User u = null;
+        User u = this.users.stream()
+                .filter(user1 -> user1.getUserId().equals(user))
+                .findAny()
+                .orElse(null);
         Gate g = null;
-        for(User usr : this.users){
-            if(usr.getUserId().equals(user)){
-                u = usr;
-            }
-        }
         for(Gate gt : this.gates){
             if(gt.getGateNo() == gate){
                 g = gt;
