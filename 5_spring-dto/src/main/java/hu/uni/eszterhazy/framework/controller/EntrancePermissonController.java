@@ -1,5 +1,6 @@
 package hu.uni.eszterhazy.framework.controller;
 
+import hu.uni.eszterhazy.framework.controller.dto.UserAccessRequestDto;
 import hu.uni.eszterhazy.framework.service.AccessControlManagerService;
 import hu.uni.eszterhazy.framework.service.exceptions.AccessDeniedException;
 import lombok.RequiredArgsConstructor;
@@ -14,15 +15,18 @@ public class EntrancePermissonController {
 
     private final AccessControlManagerService service;
 
-    @GetMapping(value = "/{id}")
-    public boolean requestAccess(@PathVariable(value = "id") int gateId, @RequestParam(value = "user") String user){
-        log.info("{} requested permissont to {}", user, gateId);
+    @PostMapping(value = "/enter")
+    public boolean requestAccess(@RequestBody UserAccessRequestDto dto){
+        log.info("{} requested permissont to {}", dto.getUserId(), dto.getGateNo());
         try{
-            service.requestAccess(user,gateId);
+            service.requestAccess(dto.getUserId(),dto.getGateNo());
         }
         catch (AccessDeniedException ex){
             return false;
         }
         return true;
     }
+
+
+
 }
