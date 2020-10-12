@@ -44,10 +44,10 @@ public class AccessControlManagerServiceImpl implements AccessControlManagerServ
             }
         }
         if(u == null){
-            throw new AccessDeniedException();
+            throw new AccessDeniedException(String.format("User: %s is not found!", user));
         }
         if(!u.getPermissions().contains(g.getRequiredPermission())){
-            throw new AccessDeniedException();
+            throw new AccessDeniedException(String.format("Access Denied for (%s) to %s", u, g));
         }
 
     }
