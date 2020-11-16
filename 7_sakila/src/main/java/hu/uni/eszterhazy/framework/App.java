@@ -20,33 +20,12 @@ import java.util.stream.StreamSupport;
  *
  */
 @SpringBootApplication
-public class App implements CommandLineRunner
+public class App
 {
-    @Autowired
-    private ApplicationContext context;
-
     public static void main( String[] args )
     {
         SpringApplication.run(App.class, args);
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        System.out.println("Hello World!");
-        AddressDao dao = context.getBean(AddressDao.class);
-//        dao.readAll().forEach(System.out::println);
-
-        dao.createAddress(new Address(
-                "Leanyka St 4",
-                "C. ep.",
-                "Almagyar",
-                "Eger",
-                "Hungary",
-                "3300",
-                "idk123"));
-
-//        CountryRepository countryRepository = context.getBean(CountryRepository.class);
-//        System.out.println(countryRepository.findByCountry("Hungary"));
-    }
 
 }
