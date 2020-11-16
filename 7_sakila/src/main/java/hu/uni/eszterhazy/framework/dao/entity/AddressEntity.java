@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -17,7 +18,7 @@ import java.sql.Timestamp;
 public class AddressEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="address_id")
     private int id;
 
@@ -39,7 +40,9 @@ public class AddressEntity {
 
     //    Geomerty type; See: https://stackoverflow.com/questions/39147145/spring-data-jpa-and-geometry-type
 //    Implement later
-//    private location
+    @Column(columnDefinition = "geometry")
+    private Point location;
+
     @Column(name="last_update")
     private Timestamp lastUpdate;
 

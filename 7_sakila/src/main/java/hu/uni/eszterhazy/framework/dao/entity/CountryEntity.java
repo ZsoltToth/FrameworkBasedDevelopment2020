@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 public class CountryEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="country_id")
     private int id;
 
