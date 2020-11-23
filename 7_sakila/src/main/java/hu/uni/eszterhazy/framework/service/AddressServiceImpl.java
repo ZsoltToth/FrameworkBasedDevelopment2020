@@ -25,4 +25,9 @@ public class AddressServiceImpl implements AddressService{
                 .filter( address -> address.getCity().equals(city))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void createAddress(Address address) {
+        addressDao.createAddress(address);
+    }
 }

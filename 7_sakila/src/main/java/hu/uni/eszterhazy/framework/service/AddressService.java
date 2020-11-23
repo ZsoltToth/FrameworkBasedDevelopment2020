@@ -10,4 +10,6 @@ public interface AddressService {
     Collection<Address> listAll();
 
     Collection<Address> listAllByCity(String city);
+
+    void createAddress(Address address);
 }

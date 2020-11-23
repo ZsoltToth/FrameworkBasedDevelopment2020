@@ -1,13 +1,11 @@
 package hu.uni.eszterhazy.framework.controller;
 
 import hu.uni.eszterhazy.framework.controller.dto.AddressDto;
+import hu.uni.eszterhazy.framework.controller.dto.ExtendedAddressDto;
 import hu.uni.eszterhazy.framework.model.Address;
 import hu.uni.eszterhazy.framework.service.AddressService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -24,7 +22,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AddressController {
 
-    // TODO: Replace Model objects with DTOs
     private final AddressService service;
 
     @GetMapping(value = {"/","/all"})
@@ -55,4 +52,16 @@ public class AddressController {
                 .collect(Collectors.toList());
     }
 
+    @PostMapping("/record")
+    public void recordAddress( @RequestBody ExtendedAddressDto addressDto){
+        service.createAddress(new Address(
+                addressDto.getAddress(),
+                addressDto.getAddress2(),
+                addressDto.getDistrict(),
+                addressDto.getCity(),
+                addressDto.getCountry(),
+                addressDto.getPostalCode(),
+                addressDto.getPhone()
+        ));
+    }
 }
