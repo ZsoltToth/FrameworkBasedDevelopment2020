@@ -1,5 +1,6 @@
 package hu.uni.eszterhazy.framework.dao;
 
+import hu.uni.eszterhazy.framework.exceptions.UnknownCountryException;
 import hu.uni.eszterhazy.framework.model.Address;
 
 import java.util.Collection;
@@ -14,7 +15,7 @@ import java.util.Collection;
 public interface AddressDao {
 
 
-    void createAddress(Address address);
+    void createAddress(Address address) throws UnknownCountryException;
 
     Collection<Address> readAll();
 

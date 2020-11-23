@@ -3,6 +3,7 @@ package hu.uni.eszterhazy.framework.dao;
 import hu.uni.eszterhazy.framework.dao.entity.AddressEntity;
 import hu.uni.eszterhazy.framework.dao.entity.CityEntity;
 import hu.uni.eszterhazy.framework.dao.entity.CountryEntity;
+import hu.uni.eszterhazy.framework.exceptions.UnknownCountryException;
 import hu.uni.eszterhazy.framework.model.Address;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class AddressDaoImpl implements AddressDao{
     private final CountryRepository countryRepository;
 
     @Override
-    public void createAddress(Address address) {
+    public void createAddress(Address address) throws UnknownCountryException {
         GeometryFactory geometryFactory = new GeometryFactory();
         addressRepository.save(AddressEntity.builder()
                 .address(address.getAddress())
@@ -41,11 +42,12 @@ public class AddressDaoImpl implements AddressDao{
                 .build());
     }
 
-    private CityEntity queryCityByNameAndCountry(String city, String country){
+    private CityEntity queryCityByNameAndCountry(String city, String country) throws UnknownCountryException {
         CountryEntity countryEntity;
         if(countryRepository.findByCountry(country).isEmpty()){
-           log.info("Country {} has not been recorded!", country);
-           countryRepository.save(new CountryEntity(0,country, currentTimestamp() ));
+           log.error("Country {} has not been recorded!", country);
+//           countryRepository.save(new CountryEntity(0,country, currentTimestamp() ));
+            throw new UnknownCountryException(country);
         }
         countryEntity = countryRepository.findByCountry(country).get();
         if(cityRepository.findByCity(city).isEmpty()){

@@ -1,5 +1,6 @@
 package hu.uni.eszterhazy.framework.service;
 
+import hu.uni.eszterhazy.framework.exceptions.UnknownCountryException;
 import hu.uni.eszterhazy.framework.model.Address;
 
 import java.util.Collection;
@@ -11,5 +12,5 @@ public interface AddressService {
 
     Collection<Address> listAllByCity(String city);
 
-    void createAddress(Address address);
+    void createAddress(Address address) throws UnknownCountryException;
 }

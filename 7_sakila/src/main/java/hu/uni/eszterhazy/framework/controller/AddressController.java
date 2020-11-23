@@ -2,10 +2,13 @@ package hu.uni.eszterhazy.framework.controller;
 
 import hu.uni.eszterhazy.framework.controller.dto.AddressDto;
 import hu.uni.eszterhazy.framework.controller.dto.ExtendedAddressDto;
+import hu.uni.eszterhazy.framework.exceptions.UnknownCountryException;
 import hu.uni.eszterhazy.framework.model.Address;
 import hu.uni.eszterhazy.framework.service.AddressService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -53,15 +56,19 @@ public class AddressController {
     }
 
     @PostMapping("/record")
-    public void recordAddress( @RequestBody ExtendedAddressDto addressDto){
-        service.createAddress(new Address(
-                addressDto.getAddress(),
-                addressDto.getAddress2(),
-                addressDto.getDistrict(),
-                addressDto.getCity(),
-                addressDto.getCountry(),
-                addressDto.getPostalCode(),
-                addressDto.getPhone()
-        ));
+    public void recordAddress( @RequestBody ExtendedAddressDto addressDto) {
+        try {
+            service.createAddress(new Address(
+                    addressDto.getAddress(),
+                    addressDto.getAddress2(),
+                    addressDto.getDistrict(),
+                    addressDto.getCity(),
+                    addressDto.getCountry(),
+                    addressDto.getPostalCode(),
+                    addressDto.getPhone()
+            ));
+        } catch (UnknownCountryException e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
 }
